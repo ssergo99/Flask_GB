@@ -1,10 +1,13 @@
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+
 from blog.views.auth import auth_app, login_manager
 from blog.views.users import users_app
 from blog.views.articles import articles_app
 from blog.models.database import db
 import os
 from flask_migrate import Migrate
+from blog.security import flask_bcrypt
 
 cfg_name = os.environ.get("CONFIG_NAME") or "DevConfig"
 
@@ -17,6 +20,7 @@ app.register_blueprint(auth_app, url_prefix="/auth")
 
 db.init_app(app)
 login_manager.init_app(app)
+flask_bcrypt.init_app(app)
 
 
 @app.route("/")

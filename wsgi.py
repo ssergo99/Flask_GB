@@ -1,5 +1,6 @@
 from blog.app import app, db
 from blog.models.user import Role
+import os
 
 if __name__ == "__main__":
     app.run(
@@ -8,22 +9,14 @@ if __name__ == "__main__":
     )
 
 
-@app.cli.command("init-db")
-def init_db():
-    db.create_all()
-    print("done!")
-
-
-@app.cli.command("create-users")
-def create_users():
+@app.cli.command("create-admin")
+def create_admin():
     from blog.models import User
-    admin_role = Role(name='Admin')
+
     admin = User(username="admin", is_staff=True)
-    james = User(username="james")
-    newadmin1 = User(username='new_admin', is_staff=True)
-    newadmin1.roles = [admin_role, ]
+    admin.password = os.environ.get("ADMIN_PASSWORD") or "adminpass"
+
     db.session.add(admin)
-    db.session.add(james)
-    db.session.add(newadmin1)
     db.session.commit()
-    print("done! created users:", admin, james)
+
+    print("created admin:", admin)

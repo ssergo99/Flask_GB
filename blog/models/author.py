@@ -4,6 +4,9 @@ from blog.models.database import db
 
 
 class Author(db.Model):
+    def __str__(self):
+        return self.user.username
+
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 

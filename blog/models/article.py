@@ -6,6 +6,9 @@ from blog.models.article_tag import article_tag_association_table
 
 
 class Article(db.Model):
+    def __str__(self):
+        return self.title
+
     id = Column(Integer, primary_key=True)
     author_id = Column(Integer, ForeignKey("author.id"))
     author = relationship("Author", back_populates="articles")

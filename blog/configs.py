@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+FLASK_ADMIN_SWATCH = 'litera'
+
 
 class BaseConfig(object):
     DEBUG = False

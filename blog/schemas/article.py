@@ -10,6 +10,7 @@ class ArticleSchema(Schema):
         self_view_many = "article_list"
 
     id = fields.Integer(as_string=True)
+    author_id = fields.Integer(as_string=True)
     title = fields.String(allow_none=False)
     body = fields.String(allow_none=False)
     dt_created = fields.DateTime(allow_none=False)

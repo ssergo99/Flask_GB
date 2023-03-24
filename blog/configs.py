@@ -18,6 +18,11 @@ class BaseConfig(object):
     OPENAPI_SWAGGER_UI_VERSION = '3.22.0'
 
 
+class ProductionConfig(BaseConfig):
+    SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+
+
 class DevConfig(BaseConfig):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")

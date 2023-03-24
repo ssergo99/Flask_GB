@@ -51,3 +51,4 @@ WTForms==3.0.1
 zipp==3.14.0
 ComboJSONAPI==1.0.5
 apispec==2.0.2
+gunicorn==20.1.0
